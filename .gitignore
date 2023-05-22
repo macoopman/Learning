@@ -1,15 +1,19 @@
-# Assembly 
+# Ignore all
+*
 
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+### Above combination will ignore all files without extension ###
+
+# Assembly 
 *.o
-*.c
 *.out
 *.lst
-**/*.s
 
-# Binaries
-*
-!/**/
-!*.*
 
 # Log file
 *.log
@@ -25,7 +29,7 @@
 *.war
 *.ear
 *.nar
-hs_err_pid*
+#hs_err_pid*
 ##############################
 ## Maven
 ##############################
