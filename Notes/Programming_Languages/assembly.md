@@ -106,7 +106,7 @@ The label that specifies where the program should start.
 ### Other Conditionals
 
 **loopq**
-	* Combines sever actions into one.
+	* Combines several actions into one.
 		1. Decrement %rcx (counter register)
 		2. Jump to the speified label if the result of the decrement is not zero.
 	* The idea behind theis instruction is that it jumps if it is still in the loop and oes't jump if you exit the loop.
@@ -133,6 +133,20 @@ The label that specifies where the program should start.
 			* register with val from memory
 	
 
+-------------------------------------------------------------------------------------------------------------------
+## Addressing Modes
+
+* *Immediate Mode:** This is when we put the value of interest directly in the instruction
+	* ``` movq $5, %rax ``` ($5 part)
+
+* **Register Mode:** This is when we are referring to a register to find or store a value
+	* ```movq $5, %rax ``` (using %rax is register mode)
+
+* **Direct memory mode:** This is when we are reffering to a value by its address.
+	* ``` movq firest_value, %rbx``` (first_value is a direct memory address)
+
+* **Register Indirect:** The register holds the value of the address to access
+	* ``` movq (%rbx), %rax ``` ( (%rbx) is referring to the address that is held in rbx)
 
 -------------------------------------------------------------------------------------------------------------------
 
