@@ -131,10 +131,30 @@ The label that specifies where the program should start.
 			* register with specific value
 				* NOTE: specific value must be first arg
 			* register with val from memory
+
+### Working with memory
+
+**leaq**
+	* Load Effictive Adress
+	* Will calculate the final address an store the address itself into the destination register
+	* Example: ```leaq mynumbers, %rbx```
+		* load the address of mynumbers into rbx
 	
 
 -------------------------------------------------------------------------------------------------------------------
 ## Addressing Modes
+
+### General Addressing Mode Syntax
+``` VALUE( BASEREG, IDXREG, MULTIPLIER) ```
+	* VALUE -> fixed value
+	* BASREG -> register (Base)
+	* IDXREG -> register (Index)
+	* MULTIPLIER -> fixed multiplier
+		* 1,2,3,8 (1 if left out)
+* Address caluclated as --> address = VALUE + BASEREG + IDXREG * MULTIPLIER
+* If anything is left out it is 0 (zero) except the multiplier (1)j
+
+### Modes
 
 * *Immediate Mode:** This is when we put the value of interest directly in the instruction
 	* ``` movq $5, %rax ``` ($5 part)
@@ -143,7 +163,8 @@ The label that specifies where the program should start.
 	* ```movq $5, %rax ``` (using %rax is register mode)
 
 * **Direct memory mode:** This is when we are reffering to a value by its address.
-	* ``` movq firest_value, %rbx``` (first_value is a direct memory address)
+	* ``` movq first_value, %rbx``` (first_value is a direct memory address)
+* General syntax: VALUE
 
 * **Register Indirect:** The register holds the value of the address to access
 	* ``` movq (%rbx), %rax ``` ( (%rbx) is referring to the address that is held in rbx)
@@ -224,6 +245,7 @@ Marked using ```.section .data``` command
 .section .data
 first_val:
 	quad 4
+
 ```
 
 
