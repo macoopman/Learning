@@ -28,6 +28,9 @@ Instructs the assembler to place the newxt part of the listing in the code secti
 ### _start
 The label that specifies where the program should start.
 
+### Constants
+Contants can be defined using the ```.equ`` directive
+
 
 -------------------------------------------------------------------------------------------------------------------
 
