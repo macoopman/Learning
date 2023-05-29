@@ -58,7 +58,8 @@ Contants can be defined using the ```.equ`` directive
 
 **mulq**
 	* Multiple src by %rax
-	* %rax is destination
+	* %rax is destination for the least significate bits. Only need if no overflow
+	* %rdx is destionation for most significated bits if there is overflow
 	* src must be register
 
 **divq**
@@ -94,17 +95,61 @@ Contants can be defined using the ```.equ`` directive
 **jne**
 	* Jump if ARG2 *does not* equal ARG1
 
-**ja**
-	* Jump if ARG2 is *greater than* ARG1
+*Unsigned Jumps*
+	* Unsigned jumps usally checkt he carry flag and zero flag
 
-**jae**
-	* Jump if ARG2 if *greater than* or *equal to* ARG1
+	**ja**
+		* Jump if ARG2 is *greater than* ARG1
+	
+	**jae**
+		* Jump if ARG2 if *greater than* or *equal to* ARG1
+	
+	**jb**
+		* Jump if ARG2 is *less than* ARG1
+	
+	**jbe**
+		* Jump if ARG2 is *less than* or *equal to* ARG1
 
-**jb**
-	* Jump if ARG2 is *less than* ARG1
+*Signed Jumps*
+	* Singed jumps check the carry, zero, signed, and overflow flag
 
-**jbe**
-	* Jump if ARG2 is *less than* or *equal to* ARG1
+	**jl**
+		* Jump if ARG2 is less than ARG1
+	
+	**jle**
+		* Jump if ARG2 is less than or equal to ARG1
+	
+	**jg**
+		* Jump if ARG2 is greater than ARG1
+	
+	**jge**
+		* Jump if ARG2 is greatere than or equal to ARG1
+
+**jo**
+	* Jump of overflow
+
+**jno**
+	* Jump if NOT overflow
+
+**js**
+	* Jump if signed
+
+**jns**
+	* Jump if NOT signed
+
+### Bit Manipulation
+
+**rol**
+	* Rotate Left
+
+**ror**
+	* Rotate Right
+
+**shr**
+	* Shift Right
+
+**shl**
+	* Shift Left
 
 ### Other Conditionals
 
@@ -232,6 +277,12 @@ Special-purpose register where each bit is a flag.
 	* Carry Flag
 	* 1 ->  if the result of the last arithmetic operatio resulted in a **carry**
 	* 0 ->  if no carry
+
+**OF**
+	* Overflow Flag
+
+**SF**
+	* Signed Flag
 
 
 -------------------------------------------------------------------------------------------------------------------
