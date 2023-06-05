@@ -255,7 +255,7 @@ Can be divided into 64, 32, and 16 bit but cannot access individual bytes. Gener
 	* Chapter 11
 
 **rsp** (stack pointer)
-	* Chapter 11
+	* Points to the endo of the memory region containing the stack 
 
 ### Other General-Purpose
 **r7 - r15**
@@ -313,6 +313,168 @@ first_val:
 
 * 60 -> exit
 	* In the **exit** system call, the **%rdi** register holds the exit status
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+## Bit Mask
+
+### AND
+An *AND* bit mask is useful when trying to find what bits are are turned on (i.e. find the bits that are 1)
+* The idea is that you are **masking** out all the values that you dont care about
+```
+	 1 0 1 0  (binary value to check)
+AND	 0 0 1 0  (Bit Mask - determin if the second bit it on)
+-------------
+	 0 0 1 0 
+```
+
+### OR
+An **OR** operation is used to set a bit
+
+```
+	0 0 1 0
+OR	0 0 0 1 (Bit Mask to turn on the first bit)
+------------
+	0 0 1 1
+```
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+## Stack
+
+* **REMEMBER** The stack grows towards lower memory addresses
+
+### Stack Pointer (%rsp)
+* Points tot he end of the memory region containing the stack
+
+### PUSH
+* Used to push items onto the stack
+* Performs two tasks:
+	1. Decrements %rsp to point to the next location on the stack
+	2. Copies the value to the location specified by %rsp
+
+### POP
+* Get values off of the stack 
+* Perform:
+	1. Returns value that is pointed to by %rsp
+	2. Increments the %rsp pointer to the previous location on the stack
+	
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+## Functions Calling Conventions
+
+### Application Binary Interface (ABI)
+
+* Used in Linux systems
+
+**Preservation of Registers**
+	* The following registers must always be preserved and returned back to original state prior to exiting the function. All other 
+	registers can be clobbered
+	
+	* Registers to Preserve
+		* %rbp	(base pointer)
+		* %rbx  (base register)
+		* %r12 -> %r15
+	
+**Passing Input Parameters**
+	* Order:
+		1. %rdi
+		2. %rsi
+		3. %rdx
+		4. %rcx
+		5. %r8
+		6. %r9
+		7... All additional get pushed to the statck
+
+**Return Value**
+	* %rax
+
+**Stack Frame**
+	* The section of the stack the belongs to the function is called the **stack frame**
+
+	* Setting up and tearing down (Full Version)
+	```
+	# set up
+	pushq	%rbp						# Save the pointer to the previous stack frame
+	movq	%rsp, %rbp					# Copy the stack pointer to the base pointer for a fixed reference point
+	subq	$NumberOfBytesToReserve		# Reserve how ever much memory on the stack as needed
+
+	# tear down
+	movq	%rbp, %rsp					# Restore the stack pointer
+	popq	%rbp						# restore teh base pointer
+	```
+
+	* Setting Up and Tearing Down (Simple Version)
+		* note: **enter** is slower than the above full version while **leave** is faster
+		* Only need first arg for enter. Seconds is for closers and not often used
+		```
+		enter $NUMBYTES, $0
+		leave
+		```
+	
+**Invoking and Returning**
+	* **Call**
+		```call thefunction```
+	* **ret**
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
