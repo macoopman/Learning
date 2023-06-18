@@ -68,7 +68,7 @@ sudo apt install libssl-dev -y
   * **Create New Pane Horizontal:** (Ctrl + b)  then %
   * **Create New Pane Vertical:** (Ctrl + b)  then "
   * **Switch Pane:** (Ctrl + b) then arrows
-
+3
 ### Sessionizer
   * https://github.com/jrmoulton/tmux-sessionizer
   * cargo install tmux-sessionizer

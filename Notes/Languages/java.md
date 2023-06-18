@@ -158,7 +158,7 @@ java -c -v {className}
 ```
 ### Maven Coordinate
 **GroupId:**
-	Unqiue identifier amongs and organization or a project. 
+	Unqiue identifier among and organization or a project. 
 
 **ArtifactId**
 	Name of the project
